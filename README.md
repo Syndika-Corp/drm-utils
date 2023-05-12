@@ -56,32 +56,17 @@ isValid = secp256k1.verify(sig, deriv, pubKey) // isValid - boolean, pubKey- pub
 ## Usage
 
 ```ts
-import { myPackage } from '@syndika/drm-utils';
+import { License } from '@syndika/drm-utils';
 
-myPackage('hello');
-//=> 'hello from my package'
+const PRIVATE_KEY = Secp256k1.utils.randomPrivateKey();
+const PUBLIC_KEY = Secp256k1.getPublicKey(PRIVATE_KEY);
+
+const license = await License.create('alex');
+await license.sign(PRIVATE_KEY);
+
+console.log("Your valid license key:", license.signedLicense); // 616c6578-6c3835327162-7dba8218000-3044022058abfe388905b2d3572b67bf6f0d10f3ef5787877ddbb80350733cb5c218ef26022045ba16a22a737cafe84552e54ccdccd545c6a70b486beabcfbab0f250967429f
+console.log("Is license key valid?", license.validate(PUBLIC_KEY) ? 'YES' : 'NO'); // YES
 ```
-
-## API
-
-### myPackage(input, options?)
-
-#### input
-
-Type: `string`
-
-Lorem ipsum.
-
-#### options
-
-Type: `object`
-
-##### postfix
-
-Type: `string`
-Default: `rainbows`
-
-Lorem ipsum.
 
 [build-img]:https://github.com/Syndika-Corp/drm-utils/actions/workflows/release.yml/badge.svg
 [build-url]:https://github.com/Syndika-Corp/drm-utils/actions/workflows/release.yml

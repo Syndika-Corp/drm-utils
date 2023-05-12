@@ -1,6 +1,16 @@
 export { License } from './license/license';
-import { PrivateKey, PublicKey } from './interfaces';
+
+export { MissingPublicKeyError } from './license/errors/missing-pubkey';
+export { UnsignedLicenseError } from './license/errors/unsigned-license';
+export { InvalidLicenseStringError } from './license/errors/invalid-license-string';
+
+export { PrivateKey, PublicKey } from './interfaces';
+
 export {
   MAX_UNIX_TIMESTAMP,
-  toHex, stringFromHex, decimalFromHex, toUnixTimestamp, fromUnixTimestamp,
+  toHex,
+  stringFromHex,
+  decimalFromHex,
+  toUnixTimestamp,
+  fromUnixTimestamp,
 } from './utils';
