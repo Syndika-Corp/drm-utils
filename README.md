@@ -35,12 +35,6 @@ console.log("Is license key valid?", license.validate(PUBLIC_KEY) ? 'YES' : 'NO'
 
 ## Terminal (CLI) Usage
 
-- Help
-
-```bash
-drm-utils --help
-```
-
 - Generate Operator Key
 
 ```bash
