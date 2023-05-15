@@ -7,10 +7,12 @@ on:
       - master
 jobs:
   release:
+    runs-on: ubuntu-latest
     permissions:
       contents: write
       issues: write
       pull-requests: write
-    uses: ryansonshine/ryansonshine/.github/workflows/release.yml@main
-    secrets:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - uses: ryansonshine/ryansonshine/.github/workflows/release.yml@main
+        with:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
