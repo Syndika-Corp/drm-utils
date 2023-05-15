@@ -12,5 +12,4 @@ jobs:
       issues: write
       pull-requests: write
     uses: ryansonshine/ryansonshine/.github/workflows/release.yml@main
-    with:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    secrets: inherit
