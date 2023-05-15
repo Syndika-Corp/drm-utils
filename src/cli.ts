@@ -17,7 +17,7 @@ async function main() {
 
   program
     .command('generate')
-    .argument('<machineID>', 'A MachineID e.g. l852qb')
+    .argument('<machineID>', 'The Machine ID e.g. l852qb')
     .requiredOption('-i, --issuer-id <issuer>', 'Issuer ID (name) to be used')
     .option(
       '-v, --valid-until <date>',
