@@ -3,11 +3,15 @@
   "version": "0.0.1",
   "description": "DRM Utils is a utility library made for Typescript indended to help licensing your NodeJS software (e.g. Electron).",
   "main": "./lib/index.js",
+  "bin": {
+    "drm-utils": "./lib/cli.js"
+  },
   "files": [
     "lib/**/*"
   ],
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
+    "build:watch": "tsc --project tsconfig.build.json --watch",
     "clean": "rm -rf ./lib/",
     "cm": "cz",
     "lint": "eslint ./src/ --fix",
@@ -122,6 +126,8 @@
   "dependencies": {
     "@dashincubator/secp256k1": "^1.7.1-5",
     "@emotion/hash": "^0.9.1",
+    "chalk": "^4",
+    "commander": "^10.0.1",
     "node-machine-id": "^1.1.12"
   }
 }

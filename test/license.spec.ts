@@ -1,11 +1,19 @@
 import * as Secp256k1 from '@dashincubator/secp256k1';
-import murmurHash from '@emotion/hash';
 
-import { License, MAX_UNIX_TIMESTAMP, MissingPublicKeyError, UnsignedLicenseError, InvalidLicenseStringError } from '../src';
+import {
+  License,
+  MAX_UNIX_TIMESTAMP,
+  MissingPublicKeyError,
+  UnsignedLicenseError,
+  InvalidLicenseStringError,
+} from '../src';
 
 const ISSUER_ID = 'alex';
+// eslint-disable-next-line
 const PRIVATE_KEY = Secp256k1.utils.randomPrivateKey();
+// eslint-disable-next-line
 const PUBLIC_KEY = Secp256k1.getPublicKey(PRIVATE_KEY);
+// eslint-disable-next-line
 const PUBLIC_KEY_WRONG = Secp256k1.getPublicKey(Secp256k1.utils.randomPrivateKey());
 
 describe('index', () => {
@@ -26,7 +34,11 @@ describe('index', () => {
       const customMachineId = await License.getCurrentMachineID();
       const customValidUntil = new Date(Date.now() - 86400000); // yesterday
 
-      const license = await License.create(ISSUER_ID, customMachineId, customValidUntil);
+      const license = await License.create(
+        ISSUER_ID,
+        customMachineId,
+        customValidUntil
+      );
 
       expect(license.issuerId).toStrictEqual(ISSUER_ID);
       expect(license.validUntil).toStrictEqual(customValidUntil);
@@ -34,7 +46,9 @@ describe('index', () => {
       expect(license.signature).toStrictEqual(undefined);
 
       expect(license.validate()).toStrictEqual(false); // due to passed date
-      expect(() => license.validate(PUBLIC_KEY)).toThrowError(UnsignedLicenseError);
+      expect(() => license.validate(PUBLIC_KEY)).toThrowError(
+        UnsignedLicenseError
+      );
     });
 
     it('should generate valid license key', async () => {
@@ -60,14 +74,18 @@ describe('index', () => {
       const licenseString = license.rawLicense;
       const toCheck = License.fromRawLicense(licenseString);
 
-      expect(() => License.fromSignedLicense(licenseString)).toThrowError(InvalidLicenseStringError);
+      expect(() => License.fromSignedLicense(licenseString)).toThrowError(
+        InvalidLicenseStringError
+      );
 
       expect(license.issuerId).toStrictEqual(toCheck.issuerId);
       expect(license.validUntil).toStrictEqual(toCheck.validUntil);
       expect(license.machineId).toStrictEqual(toCheck.machineId);
 
       expect(license.validate()).toStrictEqual(true);
-      expect(() => license.validate(PUBLIC_KEY)).toThrowError(UnsignedLicenseError);
+      expect(() => license.validate(PUBLIC_KEY)).toThrowError(
+        UnsignedLicenseError
+      );
     });
 
     it('should be able to restore and validate a signed license string', async () => {
@@ -76,7 +94,9 @@ describe('index', () => {
       const licenseString = license.signedLicense;
       const toCheck = License.fromSignedLicense(licenseString);
 
-      expect(() => License.fromRawLicense(licenseString)).toThrowError(InvalidLicenseStringError);
+      expect(() => License.fromRawLicense(licenseString)).toThrowError(
+        InvalidLicenseStringError
+      );
 
       expect(license.issuerId).toStrictEqual(toCheck.issuerId);
       expect(license.validUntil).toStrictEqual(toCheck.validUntil);
