@@ -12,7 +12,7 @@ const program = new Command();
 async function main() {
   program
     .command('pk')
-    .summary('Generate a secp256k1 operator private key')
+    .summary('Generate an operator PRIVATE key')
     .action(generatePK);
 
   program

@@ -1,6 +1,6 @@
 {
   "name": "drm-utils",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "DRM Utils is a utility library made for Typescript indended to help licensing your NodeJS software (e.g. Electron).",
   "main": "./lib/index.js",
   "bin": {
