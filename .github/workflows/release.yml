@@ -4,15 +4,13 @@ name: Release
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   release:
-    runs-on: ubuntu-latest
     permissions:
       contents: write
       issues: write
       pull-requests: write
-    steps:
-      - uses: ryansonshine/ryansonshine/.github/workflows/release.yml@main
-        with:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    uses: ryansonshine/ryansonshine/.github/workflows/release.yml@main
+    with:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
