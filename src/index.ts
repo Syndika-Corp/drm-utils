@@ -13,6 +13,4 @@ export {
   decimalFromHex,
   toUnixTimestamp,
   fromUnixTimestamp,
-  daysBetween,
-  daysBetweenSignedString,
 } from './utils';

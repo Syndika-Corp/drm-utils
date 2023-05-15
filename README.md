@@ -13,15 +13,15 @@
 ## Install
 
 ```bash
-npm install @syndika/drm-utils
+npm install drm-utils
 ```
 
-> In case you indend to use terminal command- kindly use `npm install @syndika/drm-utils -g` instead, to install and register the binary globally.
+> In case you indend to use terminal command- kindly use `npm install drm-utils -g` instead, to install and register the binary globally.
 
 ## Library Usage
 
 ```ts
-import { License } from '@syndika/drm-utils';
+import { License } from 'drm-utils';
 
 const PRIVATE_KEY = Secp256k1.utils.randomPrivateKey();
 const PUBLIC_KEY = Secp256k1.getPublicKey(PRIVATE_KEY);
@@ -132,10 +132,10 @@ isValid = secp256k1.verify(sig, deriv, pubKey) // isValid - boolean, pubKey- pub
 
 [build-img]:https://github.com/Syndika-Corp/drm-utils/actions/workflows/release.yml/badge.svg
 [build-url]:https://github.com/Syndika-Corp/drm-utils/actions/workflows/release.yml
-[downloads-img]:https://img.shields.io/npm/dt/@syndika/drm-utils
-[downloads-url]:https://www.npmtrends.com/@syndika/drm-utils
-[npm-img]:https://img.shields.io/npm/v/@syndika/drm-utils
-[npm-url]:https://www.npmjs.com/package/@syndika/drm-utils
+[downloads-img]:https://img.shields.io/npm/dt/drm-utils
+[downloads-url]:https://www.npmtrends.com/drm-utils
+[npm-img]:https://img.shields.io/npm/v/drm-utils
+[npm-url]:https://www.npmjs.com/package/drm-utils
 [issues-img]:https://img.shields.io/github/issues/Syndika-Corp/drm-utils
 [issues-url]:https://github.com/Syndika-Corp/drm-utils/issues
 [codecov-img]:https://codecov.io/gh/Syndika-Corp/drm-utils/branch/master/graph/badge.svg?token=uH3xJUIRvo

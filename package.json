@@ -1,5 +1,5 @@
 {
-  "name": "@syndika/drm-utils",
+  "name": "drm-utils",
   "version": "0.0.1",
   "description": "DRM Utils is a utility library made for Typescript indended to help licensing your NodeJS software (e.g. Electron).",
   "main": "./lib/index.js",

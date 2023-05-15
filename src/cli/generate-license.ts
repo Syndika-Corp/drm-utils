@@ -2,7 +2,8 @@ import * as Secp256k1 from '@dashincubator/secp256k1';
 import chalk from 'chalk';
 
 import { License } from '../license/license';
-import { toHex, daysBetweenSignedString } from '../utils';
+import { daysBetweenSignedString } from './utils';
+import { toHex } from '../utils';
 
 export async function generateLicense(
   // eslint-disable-next-line

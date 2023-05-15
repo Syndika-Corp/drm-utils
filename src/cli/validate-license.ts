@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 
 import { License } from '../license/license';
-import { daysBetweenSignedString } from '../utils';
+import { daysBetweenSignedString } from './utils';
 
 export function validateLicense(
   // eslint-disable-next-line
