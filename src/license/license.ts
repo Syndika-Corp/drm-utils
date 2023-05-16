@@ -3,15 +3,16 @@ import murmurHash from '@emotion/hash';
 import { createHash } from 'crypto';
 import * as Secp256k1 from '@dashincubator/secp256k1';
 
-import { PrivateKey, PublicKey } from '../interfaces';
+import { PrivateKey, PublicKey } from './interfaces';
 import {
   toHex,
   stringFromHex,
   decimalFromHex,
   toUnixTimestamp,
   fromUnixTimestamp,
-  MAX_UNIX_TIMESTAMP,
 } from '../utils';
+
+import { MAX_UNIX_TIMESTAMP } from './constants';
 
 import { MissingPublicKeyError } from './errors/missing-pubkey';
 import { UnsignedLicenseError } from './errors/unsigned-license';

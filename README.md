@@ -20,6 +20,8 @@ npm install drm-utils
 
 ## Library Usage
 
+- Working with License:
+
 ```ts
 import { License } from 'drm-utils';
 
@@ -31,6 +33,71 @@ await license.sign(PRIVATE_KEY);
 
 console.log("Your valid license key:", license.signedLicense); // 616c6578-6c3835327162-7dba8218000-3044022058abfe388905b2d3572b67bf6f0d10f3ef5787877ddbb80350733cb5c218ef26022045ba16a22a737cafe84552e54ccdccd545c6a70b486beabcfbab0f250967429f
 console.log("Is license key valid?", license.validate(PUBLIC_KEY) ? 'YES' : 'NO'); // YES
+```
+
+- Working with DRM abstraction:
+
+```ts
+import { DRM } from 'drm-utils';
+
+const ISSUER_ID = 'cucer';
+const PUBLIC_KEY = '047c237e5dd2a2cb6d1d3176997e50240fcdaf40704b898eb46d22882c6048d8d77deafe1169c2dc6010241e3f7654a5a07a1cf22be38dd8907deafafa321e16ad'; // Secp256k1.getPublicKey(PRIVATE_KEY)
+const ISSUERS_MAPPING = new Map().set(ISSUER_ID, PUBLIC_KEY); // add any issuers you'd like
+
+// This creates a DRM abstraction with Env and File storage strategies
+// and offline validation mechanism using the ISSUERS_MAPPING (e.g. you may implement loading from remote API)
+// Using the defaults the license will attempt to be loaded from:
+//  1. Environment variable "SYN_DRM_LICENSE"
+//  2. The "syn_drm_license.lic" file in CWD (working directory) 
+const drm = await DRM.create(ISSUERS_MAPPING).loadLicense();
+console.log('Has the license key been found?', drm.hasLicense ? 'YES' : 'NO'); // NO
+
+// Set the license, e.g. input by user manually from UI or fetched from a server (the license.signedLicense)
+// The store method will persist given license to both env and file storages as described above
+const theLicenseStringFromInput = '6375636572-6c3835327162-68b4b7d0-3044022032de288bdfa6bd9975eb3fe119bdca2d1086ee00ef297ebb0fe193e95a04cb1602206588e0db8424c66a915c93458e4812d3048e37bac088f3ef433a8584148e58fa';
+await drm.storeLicense(theLicenseStringFromInput);
+// ...or if not willing to persist (beware- calling storeLicense() will persist it)
+await drm.setLicense(theLicenseStringFromInput);
+
+// To validate a license you can call
+console.log('Is the license key valid?', await drm.validateLicense(/* optionally set license string or instance here */) ? 'YES' : 'NO'); // YES
+```
+
+## Extending the Library
+
+> Note that storage and validation strategies can be set in `DRM`, thus custom logic such as loading license from DB and check it online via some API can be easily implemented (by implementing custom `ILicenseStorage` and `ILicenseValidator`).
+
+- Interfaces for custom implementations:
+
+```ts
+export interface ILicenseStorage {
+  /**
+   * Load license key
+   * @param args Any parameters accepted
+   * @throws MisingLicenseError
+   */
+  load(...args: any[]): License | Promise<License>;
+
+  /**
+   * Stores license. Optional implementation.
+   * @param license
+   */
+  store(license: License): boolean | Promise<boolean>;
+}
+
+export interface ILicenseValidator {
+  /**
+   * Validates license
+   * @param license
+   */
+  validate(license: License): boolean | Promise<boolean>;
+}
+```
+
+- Using custom implementation:
+
+```ts
+const drm = new DRM(customStorage, customValidator).loadLicense();
 ```
 
 ## Terminal (CLI) Usage

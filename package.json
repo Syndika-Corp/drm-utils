@@ -1,6 +1,6 @@
 {
   "name": "drm-utils",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "DRM Utils is a utility library made for Typescript indended to help licensing your NodeJS software (e.g. Electron).",
   "main": "./lib/index.js",
   "bin": {
@@ -52,6 +52,7 @@
   "devDependencies": {
     "@ryansonshine/commitizen": "^4.2.8",
     "@ryansonshine/cz-conventional-changelog": "^3.3.4",
+    "@types/fs-extra": "^11.0.1",
     "@types/jest": "^27.5.2",
     "@types/node": "^12.20.11",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
@@ -128,6 +129,7 @@
     "@emotion/hash": "^0.9.1",
     "chalk": "^4",
     "commander": "^10.0.1",
+    "fs-extra": "^11.1.1",
     "node-machine-id": "^1.1.12"
   }
 }

@@ -1,5 +1,3 @@
-export const MAX_UNIX_TIMESTAMP = 8640000000000000;
-
 export const toHex = (data: unknown): string =>
   typeof data === 'number'
     ? data.toString(16)

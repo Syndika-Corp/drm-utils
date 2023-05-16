@@ -16,7 +16,7 @@ const PUBLIC_KEY = Secp256k1.getPublicKey(PRIVATE_KEY);
 // eslint-disable-next-line
 const PUBLIC_KEY_WRONG = Secp256k1.getPublicKey(Secp256k1.utils.randomPrivateKey());
 
-describe('index', () => {
+describe('drm-utils', () => {
   describe('License', () => {
     it('should properly initialize the License instance defaults', async () => {
       const license = await License.create(ISSUER_ID);
