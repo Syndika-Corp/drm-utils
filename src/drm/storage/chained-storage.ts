@@ -55,13 +55,14 @@ export class ChainedStorage implements ILicenseStorage {
    * Get a storage of certain implementation from the chain
    *
    * @param impl Function constructor to compare chain items to
-   * @returns First instance having the implementation of type passed to the function
+   * @returns Instance at given index having the implementation of type passed to the function
    */
   public storage<T extends ILicenseStorage>(
     // eslint-disable-next-line
-    impl: Function
+    impl: Function,
+    atIndex = 0
   ): T | undefined {
-    return this.storages.filter(i => i instanceof impl).shift() as T;
+    return this.storages.filter(i => i instanceof impl)[atIndex] as T;
   }
 
   /**
