@@ -13,6 +13,7 @@
     "build": "tsc --project tsconfig.build.json && chmod +x ./lib/cli.js",
     "build:watch": "tsc --project tsconfig.build.json --watch",
     "clean": "rm -rf ./lib/",
+    "docs": "typedoc src/index.ts",
     "cm": "cz",
     "lint": "eslint ./src/ --fix",
     "prepare": "husky install",
@@ -69,6 +70,7 @@
     "semantic-release": "^21.0.1",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
+    "typedoc": "^0.24.7",
     "typescript": "^4.2.4"
   },
   "config": {
